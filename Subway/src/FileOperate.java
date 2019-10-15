@@ -14,8 +14,8 @@ public class FileOperate {
                 System.out.println("");
             }
         }else{
-//            System.out.println("查询地铁线路图，请按照格式输入如：java Subway -map Subway.txt");
-        	throw new Exception("查询地铁线路图，请按照格式输入如：java Subway -map Subway.txt");
+            System.out.println("查询地铁线路图，请按照格式输入如：java Subway -map Subway.txt");
+        	throw new Exception();
         }
     }
 	
@@ -32,21 +32,22 @@ public class FileOperate {
 					flag = 1;
 				}
             }
-			if(flag==0)
-//				System.out.println("不存在此线路!");
-				throw new Exception("不存在此线路!");
+			if(flag==0) {
+				System.out.println("不存在此线路!");
+				throw new Exception();
+			}
         }
 		else{
-//			System.out.println("查询地铁线路，请按照格式输入如：java Subway -a 1号线 -map Subway.txt -o Station.txt");
-			throw new Exception("查询地铁线路，请按照格式输入如：java Subway -a 1号线 -map Subway.txt -o Station.txt");
+			System.out.println("查询地铁线路，请按照格式输入如：java Subway -a 1号线 -map Subway.txt -o Station.txt");
+			throw new Exception();
         }
     }
 	 
 	public FileOperate(String str, String str1, String str2, String str3, String str4, String str5, String str6) throws Exception {
 		if(str.equals("-b") &&  str3.equals("-map") && str5.equals("-o")) {
 			if(str1.equals(str2)) {
-//				System.out.println("起始站点与目的站点相同，请重新输入!");
-				throw new Exception("起始站点与目的站点相同，请重新输入!");
+				System.out.println("起始站点与目的站点相同，请重新输入!");
+				throw new Exception();
 			}
 			 
 			List<String> lines = getFile(str4);
@@ -64,13 +65,13 @@ public class FileOperate {
             	}
             }
 			if(flag1==0) {
-//				System.out.println("起始站点不存在!");
-				throw new Exception("起始站点不存在!");
+				System.out.println("起始站点不存在!");
+				throw new Exception();
 			}
 				
 			if(flag2==0) {
-//				System.out.println("目的站点不存在!");
-				throw new Exception("目的站点不存在!");
+				System.out.println("目的站点不存在!");
+				throw new Exception();
 			}
              
 //          获取最短路径
@@ -81,8 +82,8 @@ public class FileOperate {
             }
 		}
 		else {
-//			System.out.println("查询地铁线路，请按照格式输入如：java Subway -b 苹果园 雍和宫 -map Subway.txt -o Routine.txt");
-			throw new Exception("查询地铁线路，请按照格式输入如：java Subway -b 苹果园 雍和宫 -map Subway.txt -o Routine.txt");
+			System.out.println("查询地铁线路，请按照格式输入如：java Subway -b 苹果园 雍和宫 -map Subway.txt -o Routine.txt");
+			throw new Exception();
 		}
 	}
 
