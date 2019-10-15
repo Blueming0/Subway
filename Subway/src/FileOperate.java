@@ -73,9 +73,9 @@ public class FileOperate {
 				throw new Exception("目的站点不存在!");
 			}
              
-//          获取最短路径getPath(start,end)
+//          获取最短路径
 			setAllLines(str4);
-			getRoutine(str6,str1,str2);
+			getPath(str6,str1,str2);
 			for(int i=0;i<getFile(str6).size();i++){
 				getFilePrint(str6,i);
             }
@@ -182,7 +182,7 @@ public class FileOperate {
 		}
 	}
     
-    public void getRoutine(String path,String startStation,String endStation) throws IOException {
+    public void getPath(String path,String startStation,String endStation) throws IOException {
     	try {
  			File file = new File(path);
  	     	FileWriter writer = new FileWriter(file);
