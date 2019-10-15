@@ -26,8 +26,21 @@ public class Dijkstra {
             }
         }
           
-//      获取下一站点
-        Station nextStation = getNextStation();
+        //获取下一站点
+        int d = Integer.MAX_VALUE;
+      	Station nextStation = null;
+      	Set<Station> stations = path.keySet();
+      	for (Station s:stations) {
+      		if (outList.contains(s)) {
+      			continue;
+              }
+      		Path p = path.get(s);
+      		if (p.getDistance()<d) {
+      			d = p.getDistance();
+      			nextStation = p.getEndStation();
+              }
+          }
+
         if (nextStation.equals(endStation)) {
         	return path.get(nextStation);
         }
@@ -69,23 +82,5 @@ public class Dijkstra {
         getShortestPath(startStation, endStation);//重复计算，往外面站点扩展
         
         return path.get(endStation);
-     }
-    
-// 	获取下一站点
-     private static Station getNextStation() {
-     	int distance = Integer.MAX_VALUE;
-     	Station result = null;
-     	Set<Station> stations = path.keySet();
-     	for (Station s:stations) {
-     		if (outList.contains(s)) {
-     			continue;
-             }
-     		Path p = path.get(s);
-     		if (p.getDistance()<distance) {
-     			distance = p.getDistance();
-     			result = p.getEndStation();
-             }
-         }
-     	return result;
      }
 }
