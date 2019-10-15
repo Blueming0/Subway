@@ -7,18 +7,19 @@ public class FileOperate {
 		// TODO Auto-generated constructor stub
     }
 	
-	public FileOperate(String str1, String str2) {
+	public FileOperate(String str1, String str2) throws Exception {
         if(str1.equals("-map")){
             for(int i=0;i<getFile(str2).size();i++){
                 getFilePrint(str2,i);
                 System.out.println("");
             }
         }else{
-            System.out.println("查询地铁线路图，请按照格式输入如：java Subway -map Subway.txt");
+//            System.out.println("查询地铁线路图，请按照格式输入如：java Subway -map Subway.txt");
+        	throw new Exception("查询地铁线路图，请按照格式输入如：java Subway -map Subway.txt");
         }
     }
 	
-	public FileOperate(String str, String str1, String str2, String str3, String str4, String str5) {
+	public FileOperate(String str, String str1, String str2, String str3, String str4, String str5) throws Exception {
 		if(str.equals("-a") && str2.equals("-map") && str4.equals("-o")){
 			List<String> lines = getFile(str3);
 			int flag = 0;
@@ -32,17 +33,21 @@ public class FileOperate {
 				}
             }
 			if(flag==0)
-				System.out.println("不存在此线路!");
+//				System.out.println("不存在此线路!");
+				throw new Exception("不存在此线路!");
         }
 		else{
-			System.out.println("查询地铁线路，请按照格式输入如：java Subway -a 1号线 -map Subway.txt -o Station.txt");
+//			System.out.println("查询地铁线路，请按照格式输入如：java Subway -a 1号线 -map Subway.txt -o Station.txt");
+			throw new Exception("查询地铁线路，请按照格式输入如：java Subway -a 1号线 -map Subway.txt -o Station.txt");
         }
     }
 	 
-	public FileOperate(String str, String str1, String str2, String str3, String str4, String str5, String str6) throws IOException {
+	public FileOperate(String str, String str1, String str2, String str3, String str4, String str5, String str6) throws Exception {
 		if(str.equals("-b") &&  str3.equals("-map") && str5.equals("-o")) {
-			if(str1.equals(str2))
-				System.out.println("起始站点与目的站点相同，请重新输入!");
+			if(str1.equals(str2)) {
+//				System.out.println("起始站点与目的站点相同，请重新输入!");
+				throw new Exception("起始站点与目的站点相同，请重新输入!");
+			}
 			 
 			List<String> lines = getFile(str4);
 			int flag1 = 0;
@@ -58,10 +63,15 @@ public class FileOperate {
                 	}
             	}
             }
-			if(flag1==0)
-				System.out.println("起始站点不存在!");
-			if(flag2==0)
-				System.out.println("目的站点不存在!");
+			if(flag1==0) {
+//				System.out.println("起始站点不存在!");
+				throw new Exception("起始站点不存在!");
+			}
+				
+			if(flag2==0) {
+//				System.out.println("目的站点不存在!");
+				throw new Exception("目的站点不存在!");
+			}
              
 //          获取最短路径getPath(start,end)
 			setAllLines(str4);
@@ -71,7 +81,8 @@ public class FileOperate {
             }
 		}
 		else {
-			System.out.println("查询地铁线路，请按照格式输入如：java Subway -b 苹果园 雍和宫 -map Subway.txt -o Routine.txt");
+//			System.out.println("查询地铁线路，请按照格式输入如：java Subway -b 苹果园 雍和宫 -map Subway.txt -o Routine.txt");
+			throw new Exception("查询地铁线路，请按照格式输入如：java Subway -b 苹果园 雍和宫 -map Subway.txt -o Routine.txt");
 		}
 	}
 
@@ -92,7 +103,8 @@ public class FileOperate {
         		in.close();
         	}
         	else {
-        		System.out.println(path+"文件不存在！");
+//        		System.out.println(path+"文件不存在！");
+        		throw new Exception(path+"文件不存在！");
             }
         } 
         catch (Exception e) {
@@ -119,7 +131,7 @@ public class FileOperate {
     }
     
 //	存储所有地铁线路信息
-	public void setAllLines(String path) throws IOException {
+	public void setAllLines(String path) throws Exception {
 		File file=new File(path);
 		if(file.exists()) {
 			InputStream in = new FileInputStream(file);
@@ -164,8 +176,10 @@ public class FileOperate {
 			reader.close();
 			in.close();
 		}
-		else
-			System.out.println(path+"文件不存在！");
+		else {
+//			System.out.println(path+"文件不存在！");
+    		throw new Exception(path+"文件不存在！");
+		}
 	}
     
     public void getRoutine(String path,String startStation,String endStation) throws IOException {
